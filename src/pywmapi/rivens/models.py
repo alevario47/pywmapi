@@ -45,7 +45,7 @@ class RivenItem(ModelBase):
             icon=data["i18n"]["en"]["icon"],
             thumb=data["i18n"]["en"]["thumb"],
             disposition=data["disposition"],
-            reqMasteryRank=data["reqMasteryRank"]
+            reqMasteryRank=data["reqMasteryRank"],
         )
 
 
@@ -76,7 +76,6 @@ class RivenAttribute(ModelBase):
     positiveIsNegative: Optional[bool] = False
     positiveOnly: Optional[bool] = False
     negativeOnly: Optional[bool] = False
-    
 
     @classmethod
     def from_dict(cls, data: dict) -> "RivenAttribute":
