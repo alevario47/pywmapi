@@ -16,16 +16,16 @@
 For now, the implemented function is listed below:
 
 * auth
-  * 🔲 sign in
+  * 🆖 sign in
   * 🆖 register
   * 🆖 restore password
 * profile
   * 🔲 get current user's profile
-  * 🔲 manage current user profile
+  * 🆖 manage current user profile
   * 🔲 get a user's profile
   * 🔲 get all of a user's achievements
   * 🔲 get all of a user's reviews
-  * 🔲 set current user's online/offline status
+  * 🆖 set current user's online/offline status
 * items
   * ✅ list all tradable items
   * ✅ get info about an item
@@ -35,9 +35,9 @@ For now, the implemented function is listed below:
 * orders
   * ✅ get orders of a single item
   * 🔲 get orders for the last 4 hours
-  * 🔲 update a single order on the current profile
-  * 🔲 delete a single order on the current profile
-  * 🔲 add a new order for the current profile
+  * 🆖 update a single order on the current profile
+  * 🆖 delete a single order on the current profile
+  * 🆖 add a new order for the current profile
   * 🔲 get user's sale statistics(closed orders)
   * 🔲 get all of a user's orders
 * liches
@@ -45,14 +45,14 @@ For now, the implemented function is listed below:
   * ✅ list all lich ephemeras
   * ✅ list all lich quirks
 * rivens
-  * 🔲 list all riven items
-  * 🔲 get a list of riven attributes
+  * ✅ list all riven items
+  * ✅ get a list of riven attributes
 * misc
   * 🔲 get a list of all known game locations
   * 🔲 get a list of all known npcs
   * 🔲 get a list of all known missions
 * auctions
-  * 🔲 create auction
+  * 🆖 create auction
   * 🔲 get a list of riven auctions by given search params
   * 🔲 get a list of lich auctions by given search params
 * auction entry️
@@ -111,9 +111,9 @@ package of pywmapi is structured as:
 
 🏗️ *Better documentation is under construction!*
 
-The param `url_name` of some functions is regarded as the unique name for each item. For instance, if I search for the item *Chroma Prime Systems* on warframe market, the url for this page become *https://warframe.market/items/chroma_prime_systems*. And the last part of this url string is exactly the `url_name` for this item, i.e. `chroma_prime_systems`!
+The param `slug` of some functions is regarded as the unique name for each item. For instance, if I search for the item *Chroma Prime Systems* on warframe market, the url for this page become *https://warframe.market/items/chroma_prime_systems*. And the last part of this url string is exactly the `slug` for this item, i.e. `chroma_prime_systems`!
 
-Another way to get `url_name` for an item is through the `items.list_items()` function.
+Another way to get `slug` for an item is through the `items.list_items()` function.
 
 ### Examples
 
@@ -127,7 +127,7 @@ To list all of the tradable items:
 wm.items.list_items()
 ```
 
-To get the info for any item with its `url_name`:
+To get the info for any item with its `slug`:
 ```python
 wm.items.get_item("chroma_prime_systems")
 ```
@@ -174,7 +174,7 @@ More APIs and docs could be found in corresponding packages and docstrings.
 
 ## Reference
 
-[Warframe market official API documentation](https://warframe.market/api_docs)
+[Warframe market official API documentation](hhttps://42bytes.notion.site/WFM-Api-v2-Documentation-5d987e4aa2f74b55a80db1a09932459d)
 
 [WFCD/market-api-spec](https://github.com/WFCD/market-api-spec)
 
