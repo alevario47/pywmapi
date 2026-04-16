@@ -41,9 +41,9 @@ For now, the implemented function is listed below:
   * 🔲 get user's sale statistics(closed orders)
   * 🔲 get all of a user's orders
 * liches
-  * 🔲 list all lich weapons
-  * 🔲 list all lich ephemeras
-  * 🔲 list all lich quirks
+  * ✅ list all lich weapons
+  * ✅ list all lich ephemeras
+  * ✅ list all lich quirks
 * rivens
   * 🔲 list all riven items
   * 🔲 get a list of riven attributes
