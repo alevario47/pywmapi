@@ -1,5 +1,6 @@
-from pywmapi.statistics.api import *
 import pytest
+
+from pywmapi.statistics.api import *
 
 
 @pytest.mark.skip("Statistics seem to have been removed from v2 API")
