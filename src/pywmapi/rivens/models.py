@@ -40,7 +40,7 @@ class RivenItem(ModelBase):
             name=data["i18n"]["en"]["name"],
             slug=data["slug"],
             gameRef=data["gameRef"],
-            group=csl.Group(data["group"]),
+            group=cls.Group(data["group"]),
             rivenType=data["rivenType"],
             icon=data["i18n"]["en"]["icon"],
             thumb=data["i18n"]["en"]["thumb"],
@@ -67,15 +67,16 @@ class RivenAttribute(ModelBase):
     name: str
     gameRef: str
     group: Group
-    positiveIsNegative: bool
-    positiveOnly: bool
-    negativeOnly: bool
     icon: str
     thumb: str
+    unit: Optional[Unit] = None
     prefix: Optional[str] = None
     suffix: Optional[str] = None
     exclusiveTo: Optional[List[WeaponType]] = None
-    unit: Optional[Unit] = None
+    positiveIsNegative: Optional[bool] = False
+    positiveOnly: Optional[bool] = False
+    negativeOnly: Optional[bool] = False
+    
 
     @classmethod
     def from_dict(cls, data: dict) -> "RivenAttribute":
@@ -84,14 +85,14 @@ class RivenAttribute(ModelBase):
             slug=data["slug"],
             name=data["i18n"]["en"]["name"],
             gameRef=data["gameRef"],
-            group=csl.Group(data["group"]),
-            positiveIsNegative=data["positiveIsNegative"],
-            positiveOnly=data["positiveOnly"],
-            negativeOnly=data["negativeOnly"],
+            group=cls.Group(data["group"]),
+            positiveIsNegative=data.get("positiveIsNegative"),
+            positiveOnly=data.get("positiveOnly"),
+            negativeOnly=data.get("negativeOnly"),
             prefix=data.get("prefix"),
             suffix=data.get("suffix"),
             exclusiveTo=data.get("exclusiveTo"),
-            unit=csl.Unit(data.get("unit")),
+            unit=cls.Unit(data.get("unit")) if data.get("unit") else None,
             icon=data["i18n"]["en"]["icon"],
             thumb=data["i18n"]["en"]["thumb"],
         )
