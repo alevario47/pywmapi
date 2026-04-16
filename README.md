@@ -33,7 +33,7 @@ For now, the implemented function is listed below:
   * 🔲 get statistics of an item
   * 🔲 get global market statistics
 * orders
-  * 🔲 get orders of a single item
+  * ✅ get orders of a single item
   * 🔲 get orders for the last 4 hours
   * 🔲 update a single order on the current profile
   * 🔲 delete a single order on the current profile
