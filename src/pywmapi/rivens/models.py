@@ -23,13 +23,30 @@ class RivenItem(ModelBase):
         kitgun = "kitgun"
 
     id: str
-    url_name: str
+    name: str
+    slug: str
+    gameRef: str
     group: Group
-    riven_type: WeaponType
+    rivenType: WeaponType
     icon: str
     thumb: str
-    item_name: str
-    icon_format: Optional[IconFormat] = None
+    disposition: float
+    reqMasteryRank: int
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "RivenItem":
+        return cls(
+            id=data["id"],
+            name=data["i18n"]["en"]["name"],
+            slug=data["slug"],
+            gameRef=data["gameRef"],
+            group=csl.Group(data["group"]),
+            rivenType=data["rivenType"],
+            icon=data["i18n"]["en"]["icon"],
+            thumb=data["i18n"]["en"]["thumb"],
+            disposition=data["disposition"],
+            reqMasteryRank=data["reqMasteryRank"]
+        )
 
 
 @define
@@ -39,20 +56,42 @@ class RivenAttribute(ModelBase):
         melee = "melee"
         top = "top"
 
-    class Units(Enum):
+    class Unit(Enum):
         percent = "percent"
         seconds = "seconds"
         # Not know what this is
         multiply = "multiply"
 
     id: str
-    url_name: str
+    slug: str
+    name: str
+    gameRef: str
     group: Group
-    positive_is_negative: bool
-    effect: str
-    negative_only: bool
-    search_only: bool
+    positiveIsNegative: bool
+    positiveOnly: bool
+    negativeOnly: bool
+    icon: str
+    thumb: str
     prefix: Optional[str] = None
     suffix: Optional[str] = None
-    exclusive_to: Optional[List[WeaponType]] = None
-    units: Optional[Units] = None
+    exclusiveTo: Optional[List[WeaponType]] = None
+    unit: Optional[Unit] = None
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "RivenAttribute":
+        return cls(
+            id=data["id"],
+            slug=data["slug"],
+            name=data["i18n"]["en"]["name"],
+            gameRef=data["gameRef"],
+            group=csl.Group(data["group"]),
+            positiveIsNegative=data["positiveIsNegative"],
+            positiveOnly=data["positiveOnly"],
+            negativeOnly=data["negativeOnly"],
+            prefix=data.get("prefix"),
+            suffix=data.get("suffix"),
+            exclusiveTo=data.get("exclusiveTo"),
+            unit=csl.Unit(data.get("unit")),
+            icon=data["i18n"]["en"]["icon"],
+            thumb=data["i18n"]["en"]["thumb"],
+        )
