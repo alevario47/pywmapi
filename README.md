@@ -20,9 +20,9 @@ For now, the implemented function is listed below:
   * 🆖 register
   * 🆖 restore password
 * profile
-  * 🔲 get current user's profile
+  * 🆖 get current user's profile
   * 🆖 manage current user profile
-  * 🔲 get a user's profile
+  * ✅ get a user's profile
   * 🔲 get all of a user's achievements
   * 🔲 get all of a user's reviews
   * 🆖 set current user's online/offline status
@@ -30,8 +30,8 @@ For now, the implemented function is listed below:
   * ✅ list all tradable items
   * ✅ get info about an item
 * statistics
-  * 🔲 get statistics of an item
-  * 🔲 get global market statistics
+  * 🆖 get statistics of an item
+  * 🆖 get global market statistics
 * orders
   * ✅ get orders of a single item
   * 🔲 get orders for the last 4 hours
