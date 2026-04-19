@@ -14,30 +14,69 @@ __all__ = [
 @define
 class LichWeapon(ModelBase):
     id: str
-    url_name: str
+    slug: str
+    gameRef: str
+    reqMasteryRank: int
+    name: str
     icon: str
     thumb: str
-    item_name: str
-    icon_format: Optional[IconFormat] = None
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "ItemShort":
+        return cls(
+            id=data["id"],
+            slug=data["slug"],
+            gameRef=data["gameRef"],
+            reqMasteryRank=data["reqMasteryRank"],
+            thumb=data["i18n"]["en"]["thumb"],
+            name=data["i18n"]["en"]["name"],
+            icon=data["i18n"]["en"]["icon"],
+        )
 
 
 @define
 class LichEphemera(ModelBase):
     id: str
-    url_name: str
+    slug: str
+    gameRef: str
     icon: str
     thumb: str
     animation: str
-    animation_format: IconFormat
     element: ElementType
-    item_name: str
-    icon_format: Optional[IconFormat] = None
+    name: str
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "ItemShort":
+        return cls(
+            id=data["id"],
+            slug=data["slug"],
+            gameRef=data["gameRef"],
+            animation=data["animation"],
+            element=data["element"],
+            thumb=data["i18n"]["en"]["thumb"],
+            name=data["i18n"]["en"]["name"],
+            icon=data["i18n"]["en"]["icon"],
+        )
 
 
 @define
 class LichQuirk(ModelBase):
     id: str
-    url_name: str
-    item_name: str
+    slug: str
+    name: str
+    thumb: str
     description: str
     group: str
+    icon: str
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "ItemShort":
+        return cls(
+            id=data["id"],
+            slug=data["slug"],
+            group=data["group"],
+            thumb=data["i18n"]["en"]["thumb"],
+            name=data["i18n"]["en"]["name"],
+            icon=data["i18n"]["en"]["icon"],
+            description=data["i18n"]["en"]["description"],
+        )

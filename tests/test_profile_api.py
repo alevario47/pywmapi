@@ -10,7 +10,7 @@ def test_get_profile_by_username():
     get_profile_by_username("megan")
 
 
-@pytest.mark.skipif(get_test_signin_dict() is None, reason="No test account.")
+@pytest.mark.skip("No third-party support for sign-in in API")
 def test_get_current_user():
     d = get_test_signin_dict()
     sess = signin(**d)

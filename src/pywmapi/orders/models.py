@@ -25,18 +25,83 @@ class OrderCommon(ModelBase):
     quantity: int
     type: OrderType
     visible: bool
+    perTrade: Optional[int] = None
+    itemId: Optional[str] = None
     platform: Optional[Platform] = None
-    region: Optional[str] = None
-    creation_date: Optional[datetime] = None
-    closed_date: Optional[datetime] = None
-    last_update: Optional[datetime] = None
+    locale: Optional[str] = None
+    createdAt: Optional[datetime] = None
+    updatedAt: Optional[datetime] = None
     subtype: Optional[Subtype] = None
     mod_rank: Optional[int] = None
+    ingameName: Optional[str] = None
+    reputation: Optional[int] = None
+    userId: Optional[str] = None
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "OrderCommon":
+        user_data = data.get("user")
+
+        return cls(
+            id=data.get("id"),
+            platinum=data.get("platinum"),
+            quantity=data.get("quantity"),
+            type=data.get("type"),
+            visible=data.get("visible"),
+            perTrade=data.get("perTrade"),
+            itemId=data.get("itemId"),
+            userId=user_data.get("id"),
+            ingameName=user_data.get("ingameName"),
+            platform=user_data.get("platform"),
+            locale=user_data.get("locale"),
+            reputation=user_data.get("reputation"),
+            subtype=data.get("subtype"),
+            createdAt=datetime.fromisoformat((data.get("createdAt")).replace("Z", "+00:00")),
+            updatedAt=datetime.fromisoformat((data.get("updatedAt").replace("Z", "+00:00"))),
+        )
 
 
 @define(kw_only=True)
 class OrderRow(OrderCommon):
     user: UserShort
+
+    @define
+    class UserShort:
+        class Status(Enum):
+            ingame = "ingame"
+            online = "online"
+            offline = "offline"
+
+        id: str
+        status: Status
+        locale: str
+        reputation: int
+        lastSeen: datetime
+        ingameName: Optional[str] = None
+        """In-game name. Only get this field when `verification=True`."""
+        avatar: Optional[str] = None
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "OrderRow":
+        return cls(
+            id=data.get("id"),
+            platinum=data.get("platinum"),
+            quantity=data.get("quantity"),
+            type=data.get("type"),
+            visible=data.get("visible"),
+            user=cls.UserShort(
+                data.get("user"),
+                status=ProfileStatus(data.get("status")) if data.get("status") else None,
+                locale=data.get("locale"),
+                lastSeen=(
+                    datetime.fromisoformat(data.get("lastSeen").replace("Z", "+00:00"))
+                    if data.get("lastSeen")
+                    else None
+                ),
+                reputation=data.get("reputation"),
+                avatar=data.get("avatar"),
+            ),
+            ingameName=data.get("ingameName"),
+        )
 
 
 @define(kw_only=True)

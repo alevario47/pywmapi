@@ -6,6 +6,7 @@ import pytest
 from pywmapi.auth.api import *
 
 
+@pytest.mark.skip("No third-party support for sign-in in API")
 def get_test_signin_dict() -> Optional[Dict[str, str]]:
     email = os.getenv("TEST_WM_EMAIL")
     password = os.getenv("TEST_WM_PASSWORD")
@@ -18,11 +19,12 @@ def get_test_signin_dict() -> Optional[Dict[str, str]]:
         return None
 
 
+@pytest.mark.skip("No third-party support for sign-in in API")
 def test_jwt():
     get_jwt_token()
 
 
-@pytest.mark.skipif(get_test_signin_dict() is None, reason="No test account.")
+@pytest.mark.skip("No third-party support for sign-in in API")
 def test_login():
     d = get_test_signin_dict()
     _sess = signin(**d)

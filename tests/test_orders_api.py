@@ -15,14 +15,14 @@ def test_get_orders():
     assert len(result2) > 0
 
 
-@pytest.mark.skipif(get_test_signin_dict() is None, reason="No test account.")
+@pytest.mark.skip("No third-party support for sign-in in API")
 def test_get_current_orders():
     d = get_test_signin_dict()
     sess = signin(**d)
     get_current_orders(sess)
 
 
-@pytest.mark.skipif(get_test_signin_dict() is None, reason="No test account.")
+@pytest.mark.skip("No third-party support for sign-in in API")
 def test_add_delete_order():
     d = get_test_signin_dict()
     sess = signin(**d)

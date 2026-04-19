@@ -27,7 +27,7 @@ def list_weapons(lang: Language = Language.en) -> List[LichWeapon]:
         headers={"Language": lang.value},
     )
     check_wm_response(res)
-    return list(map(lambda x: LichWeapon.from_dict(x), res.json()["payload"]["weapons"]))
+    return list(map(lambda x: LichWeapon.from_dict(x), res.json()["data"]))
 
 
 def list_ephemeras(lang: Language = Language.en) -> List[LichEphemera]:
@@ -44,7 +44,7 @@ def list_ephemeras(lang: Language = Language.en) -> List[LichEphemera]:
         headers={"Language": lang.value},
     )
     check_wm_response(res)
-    return list(map(lambda x: LichEphemera.from_dict(x), res.json()["payload"]["ephemeras"]))
+    return list(map(lambda x: LichEphemera.from_dict(x), res.json()["data"]))
 
 
 def list_quirks(lang: Language = Language.en) -> List[LichQuirk]:
@@ -61,4 +61,4 @@ def list_quirks(lang: Language = Language.en) -> List[LichQuirk]:
         headers={"Language": lang.value},
     )
     check_wm_response(res)
-    return list(map(lambda x: LichQuirk.from_dict(x), res.json()["payload"]["quirks"]))
+    return list(map(lambda x: LichQuirk.from_dict(x), res.json()["data"]))
